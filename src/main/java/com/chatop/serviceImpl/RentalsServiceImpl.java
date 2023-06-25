@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.chatop.mapper.RentalsMapper;
 import com.chatop.model.Rentals;
 import com.chatop.model.RentalsDTO;
+import com.chatop.model.Users;
 import com.chatop.repository.RentalsRepository;
 import com.chatop.service.RentalsService;
 
@@ -19,6 +20,8 @@ public class RentalsServiceImpl implements RentalsService {
 
 	@Autowired
 	private RentalsRepository rentalsRepository;
+	
+	private UsersServiceImpl usersServiceImpl;
 
 	@Override
 	public List<RentalsDTO> getAllRentals() {
@@ -32,24 +35,26 @@ public class RentalsServiceImpl implements RentalsService {
 	}
 
 	@Override
-	public RentalsDTO getRentals(final Long id) {
+	public Rentals getRentals(final Long id) {
 
 		Optional<Rentals> optionnalrentals = rentalsRepository.findById(id);
 		Rentals rentals = optionnalrentals.get();
-		RentalsDTO rentalsDTO = RentalsMapper.MAPPER.mapToRentalsDto(rentals);
+//		RentalsDTO rentalsDTO = RentalsMapper.MAPPER.mapToRentalsDto(rentals);
 
-		return rentalsDTO;
+		return rentals;
 	}
 
 	@Override
-	public Rentals createRentals(String name, int surface, int price, File pictureFile, String description) {
+	public Rentals createRentals(String name, int surface, int price, String pictureFile, String description) {
 
-		String created_at = ""; // Timestamp.;
-		String update_at = null;
+		//TODO replace by same method then get/me !
+		Long owner_id = (long) 1;
+		Users owner = usersServiceImpl.getUsers(owner_id);
 
 		// TODO pictureFile insert URL, see spec techniques
-		Rentals rentals = new Rentals(null, name, surface, price, pictureFile.getPath(), description, created_at,
-				update_at, update_at);
+		//TODO 1 should be owner_id ! 
+		Rentals rentals = new Rentals(null, owner, name, surface, price, pictureFile, description, null,
+				null);
 
 		return rentals;
 	}
@@ -58,8 +63,6 @@ public class RentalsServiceImpl implements RentalsService {
 	public Rentals updateRentals(Long id, String name, int surface, int price, String description) {
 		Optional<Rentals> optionalRentals = rentalsRepository.findById(id);
 
-		String update_at = null; // Timestamp.;
-
 		if (optionalRentals.isPresent()) {
 			Rentals rentals = optionalRentals.get();
 
@@ -67,7 +70,6 @@ public class RentalsServiceImpl implements RentalsService {
 			rentals.setSurface(surface);
 			rentals.setPrice(price);
 			rentals.setDescription(description);
-			rentals.setUpdated_at(update_at);
 
 			rentalsRepository.save(rentals);
 

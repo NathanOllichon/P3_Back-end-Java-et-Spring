@@ -10,8 +10,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import java.sql.Timestamp;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 
@@ -37,12 +39,12 @@ public class Users {
 	@Column(name = "password")
 	private String password;
 	
-	@CreatedDate
-	@Column(name = "created_at")
-	private String created_at;
+	@CreationTimestamp
+	@Column(name = "created_at", updatable = false)
+	private Timestamp created_at;
 
-	@LastModifiedDate
+	@UpdateTimestamp
 	@Column(name = "updated_at")
-	private String updated_at;
+	private Timestamp updated_at;
 	
 }

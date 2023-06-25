@@ -7,12 +7,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import java.sql.Timestamp;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
 @Entity
@@ -28,21 +33,29 @@ public class Messages {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "rental_id")
-	private Long rental_id;
+//	@Column(name = "rental_id")
+	@ManyToOne(
+			cascade = CascadeType.ALL
+			)
+	@JoinColumn(name="rental_id")
+	private Rentals rentals;
 
-	@Column(name = "user_id")
-	private Long user_id;
+//	@Column(name = "user_id")
+	@ManyToOne(
+			cascade = CascadeType.ALL
+			)
+	@JoinColumn(name="user_id")
+	private Users user;
 	
 	@Column(name = "message")
 	private String message;
 	
-	@CreatedDate
-	@Column(name = "created_at")
-	private String created_at;
+	@CreationTimestamp
+	@Column(name = "created_at", updatable = false)
+	private Timestamp created_at;
 
-	@LastModifiedDate
+	@UpdateTimestamp
 	@Column(name = "updated_at")
-	private String updated_at;
+	private Timestamp updated_at;
 	
 }

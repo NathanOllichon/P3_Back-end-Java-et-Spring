@@ -19,8 +19,4 @@ public class UsersDTO {
 	
 	private String password;
 	
-	private String created_at;
-
-	private String updated_at;
-	
 }

@@ -11,8 +11,7 @@ public interface RentalsMapper {
 
 	RentalsMapper MAPPER = Mappers.getMapper(RentalsMapper.class);
 
-	RentalsDTO mapToRentalsDto(Rentals optional);
+	RentalsDTO mapToRentalsDto(Rentals rental);
 
-	Rentals mapToRentals(RentalsDTO rentalsDTO);
-    
+	Rentals mapToRentals(RentalsDTO rentalsDTO);    
 }

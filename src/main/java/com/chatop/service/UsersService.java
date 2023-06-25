@@ -1,9 +1,13 @@
 package com.chatop.service;
 
+import com.chatop.dtoJson.UsersJsonDTO;
+import com.chatop.model.Users;
 import com.chatop.model.UsersDTO;
 
 public interface UsersService {
 
-	UsersDTO getUsers(Long id);
+	Users getUsers(Long id);
+
+	void registerUser(UsersJsonDTO usersJsonDTO);
 
 }

@@ -19,8 +19,4 @@ public class MessagesDTO {
 	
 	private String message;
 	
-	private String created_at;
-
-	private String updated_at;
-	
 }

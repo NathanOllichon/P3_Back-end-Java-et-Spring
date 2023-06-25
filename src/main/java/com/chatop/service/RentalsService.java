@@ -1,6 +1,5 @@
 package com.chatop.service;
 
-import java.io.File;
 import java.util.List;
 
 import com.chatop.model.Rentals;
@@ -10,10 +9,10 @@ public interface RentalsService {
 
 	List<RentalsDTO> getAllRentals();
 
-	RentalsDTO getRentals(Long id);
-
-	Rentals createRentals(String name, int surface, int price, File pictureFile, String description);
+	Rentals getRentals(Long id);
 
 	Rentals updateRentals(Long id, String name, int surface, int price, String description);
+
+	Rentals createRentals(String name, int surface, int price, String pictureFile, String description);
 
 }

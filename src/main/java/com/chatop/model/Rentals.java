@@ -3,19 +3,21 @@ package com.chatop.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
-import java.io.File;
+import java.sql.Timestamp;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
 @Entity
@@ -31,6 +33,12 @@ public class Rentals {
 	@Column(name = "id")
 	private Long id;
 
+	@ManyToOne(
+			cascade = CascadeType.ALL
+			)
+	@JoinColumn(name="owner_id")
+	private Users owner;
+	
 	@Column(name = "name")
 	private String name;
 
@@ -47,16 +55,19 @@ public class Rentals {
 	@Column(name = "description")
 	private String description;
 
+	//@Column(name = "owner_id")
 	//TODO Something ? Key
-	@Column(name = "owner_id")
-	private String owner_id;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "owner_id", referencedColumnName = "id")
 	
-	@CreatedDate
-	@Column(name = "created_at")
-	private String created_at;
 
-	@LastModifiedDate
+	
+	@CreationTimestamp
+	@Column(name = "created_at", updatable = false)
+	private Timestamp created_at;
+
+	@UpdateTimestamp
 	@Column(name = "updated_at")
-	private String updated_at;
+	private Timestamp updated_at;
 	
 }
