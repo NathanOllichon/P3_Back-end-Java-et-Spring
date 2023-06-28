@@ -1,4 +1,4 @@
-package com.chatop.dtoJson;
+package com.chatop.dtoModificate;
 
 import lombok.Getter;
 

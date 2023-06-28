@@ -33,11 +33,8 @@ public class Rentals {
 	@Column(name = "id")
 	private Long id;
 
-	@ManyToOne(
-			cascade = CascadeType.ALL
-			)
-	@JoinColumn(name="owner_id")
-	private Users owner;
+	@Column(name = "owner_id")
+	private Long owner_id;
 	
 	@Column(name = "name")
 	private String name;
@@ -54,13 +51,6 @@ public class Rentals {
 	
 	@Column(name = "description")
 	private String description;
-
-	//@Column(name = "owner_id")
-	//TODO Something ? Key
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "owner_id", referencedColumnName = "id")
-	
-
 	
 	@CreationTimestamp
 	@Column(name = "created_at", updatable = false)

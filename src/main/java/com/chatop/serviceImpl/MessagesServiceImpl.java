@@ -16,8 +16,10 @@ public class MessagesServiceImpl implements MessagesService{
     @Autowired
     private MessagesRepository messagesRepository;
 
+    @Autowired
     private UsersServiceImpl usersServiceImpl;
     
+    @Autowired
     private RentalsServiceImpl rentalsServiceImpl;
     
     @Override

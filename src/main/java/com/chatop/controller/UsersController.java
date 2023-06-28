@@ -20,11 +20,5 @@ public class UsersController {
     	UsersDTO userDTO = UsersMapper.MAPPER.mapToUsersDto(usersService.getUsers(id));
 		return userDTO;
 	}
-
-	//@GetMapping("/auth/me")
-	//public Optional<Users> getUsersMe() {
-	//  Final Long id = ???find user_id, how ???
-	//	return usersService.getUsers(id);
-	//}
 	
 }

@@ -1,5 +1,7 @@
 package com.chatop.model;
 
+import java.sql.Timestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +19,7 @@ public class UsersDTO {
 
 	private String name;
 	
-	private String password;
-	
+	private Timestamp created_at;
+
+	private Timestamp updated_at;
 }

@@ -1,6 +1,5 @@
 package com.chatop.serviceImpl;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -8,10 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.chatop.dtoModificate.RentalsListDTO;
 import com.chatop.mapper.RentalsMapper;
 import com.chatop.model.Rentals;
 import com.chatop.model.RentalsDTO;
-import com.chatop.model.Users;
 import com.chatop.repository.RentalsRepository;
 import com.chatop.service.RentalsService;
 
@@ -20,18 +19,19 @@ public class RentalsServiceImpl implements RentalsService {
 
 	@Autowired
 	private RentalsRepository rentalsRepository;
-	
-	private UsersServiceImpl usersServiceImpl;
 
 	@Override
-	public List<RentalsDTO> getAllRentals() {
-
+	public RentalsListDTO getAllRentals() {
+		
 		List<Rentals> listRentals = rentalsRepository.findAll();
 		List<RentalsDTO> listRentalsDTO = new ArrayList<RentalsDTO>();
 		for (Rentals rentals : listRentals) {
 			listRentalsDTO.add(RentalsMapper.MAPPER.mapToRentalsDto(rentals));
 		}
-		return listRentalsDTO;
+		
+		RentalsListDTO rentalsList = new RentalsListDTO(listRentalsDTO);
+		return rentalsList;
+//		return listRentalsDTO;
 	}
 
 	@Override
@@ -39,24 +39,17 @@ public class RentalsServiceImpl implements RentalsService {
 
 		Optional<Rentals> optionnalrentals = rentalsRepository.findById(id);
 		Rentals rentals = optionnalrentals.get();
-//		RentalsDTO rentalsDTO = RentalsMapper.MAPPER.mapToRentalsDto(rentals);
 
 		return rentals;
 	}
 
 	@Override
-	public Rentals createRentals(String name, int surface, int price, String pictureFile, String description) {
+	public void createRentals(String name, int surface, int price, String pictureFile, String description, Long owner_id) {
 
-		//TODO replace by same method then get/me !
-		Long owner_id = (long) 1;
-		Users owner = usersServiceImpl.getUsers(owner_id);
-
-		// TODO pictureFile insert URL, see spec techniques
-		//TODO 1 should be owner_id ! 
-		Rentals rentals = new Rentals(null, owner, name, surface, price, pictureFile, description, null,
+		Rentals rentals = new Rentals(null, owner_id, name, surface, price, pictureFile, description, null,
 				null);
-
-		return rentals;
+		
+		rentalsRepository.save(rentals);
 	}
 
 	@Override

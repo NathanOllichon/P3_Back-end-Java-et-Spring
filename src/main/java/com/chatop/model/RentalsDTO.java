@@ -1,5 +1,7 @@
 package com.chatop.model;
 
+import java.sql.Timestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +25,10 @@ public class RentalsDTO {
 	
 	private String description;
 
-	private Users owner;
+	private Long owner_id;
+	
+	private Timestamp created_at;
+
+	private Timestamp updated_at;
 	
 }

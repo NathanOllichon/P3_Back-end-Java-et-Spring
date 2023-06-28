@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chatop.dtoJson.MessageRequestDTO;
+import com.chatop.dtoModificate.MessageRequestDTO;
+import com.chatop.dtoModificate.MessagesResponseDTO;
 import com.chatop.serviceImpl.MessagesServiceImpl;
 
 
@@ -18,9 +19,10 @@ public class MessagesController {
     private MessagesServiceImpl messagesService;
 
     @PostMapping("/messages")
-    public ResponseEntity<String> createMessage(@RequestBody MessageRequestDTO messageRequestDTO) {
+    public ResponseEntity<MessagesResponseDTO> createMessage(@RequestBody MessageRequestDTO messageRequestDTO) {
     	messagesService.createMessage(messageRequestDTO.getRental_id(), messageRequestDTO.getUser_id(), messageRequestDTO.getMessage());
-        return new ResponseEntity<>("Message send with success", HttpStatus.OK);
+    	MessagesResponseDTO messagesResponseDTO = new MessagesResponseDTO("Message send with success");
+        return new ResponseEntity<>(messagesResponseDTO, HttpStatus.OK);
     }
     
 }
