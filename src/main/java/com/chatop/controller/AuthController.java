@@ -45,7 +45,6 @@ public class AuthController {
 	@ResponseBody
 	public TokenDTO login(@RequestBody CredentialsJsonDTO credentialsJsonDTO) {
 		Users user = usersService.isLoginValid(credentialsJsonDTO.getEmail(), credentialsJsonDTO.getPassword());
-
 		String token = tokenService.generateToken(user.getEmail());
 		TokenDTO tokenDTO = new TokenDTO(token);
 		return tokenDTO;

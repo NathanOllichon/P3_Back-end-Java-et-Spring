@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +37,6 @@ public class RentalsController {
 
 	@GetMapping("/rentals")
 	public ResponseEntity<RentalsListDTO> getAllRentals() {
-		System.out.println("get rentals entry");
 		return new ResponseEntity<>(rentalsService.getAllRentals(), HttpStatus.OK);
 	}
 
@@ -61,13 +59,13 @@ public class RentalsController {
 		// TODO in swagger ! actually we store in local, this should work if the server
 		// and client are on same machine.
 		// We do that because we haven't any server for store this image !
-		String filePath = "src/main/resources/pictures/" + pictureFile.getOriginalFilename();
-		String baseCPath = "C:/Users/Compt/OneDrive/Bureau/Alternance/Ecole/Projet 3/P3_Back-end-Java-et-Spring/";
-		String completePicturePath = baseCPath + filePath;
-		try {
+		String serverPath = "http://localhost:3001/api/pictures/" + pictureFile.getOriginalFilename();
 
+		String localPath = "C:/Users/Compt/OneDrive/Bureau/Alternance/Ecole/Projet 3/P3_Back-end-Java-et-Spring/src/main/resources/public/pictures/"  + pictureFile.getOriginalFilename();
+		try {
+			
 			byte[] bytes = pictureFile.getBytes();
-			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(localPath)));
 			stream.write(bytes);
 			stream.close();
 
@@ -76,8 +74,7 @@ public class RentalsController {
 
 			return new ResponseEntity<>(rentalRequestDTO, HttpStatus.BAD_REQUEST);
 		}
-
-		rentalsService.createRentals(name, surface, price, completePicturePath, description, owner.getId());
+		rentalsService.createRentals(name, surface, price, serverPath, description, owner.getId());
 
 		RentalsResponseDTO rentalRequestDTO = new RentalsResponseDTO("Rental created !");
 		return new ResponseEntity<>(rentalRequestDTO, HttpStatus.OK);
