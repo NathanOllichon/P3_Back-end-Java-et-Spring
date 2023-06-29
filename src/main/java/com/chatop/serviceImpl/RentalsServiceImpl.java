@@ -7,10 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.chatop.dtoModificate.RentalsListDTO;
+import com.chatop.dto.RentalsDTO;
+import com.chatop.dto.RentalsListDTO;
 import com.chatop.mapper.RentalsMapper;
 import com.chatop.model.Rentals;
-import com.chatop.model.RentalsDTO;
 import com.chatop.repository.RentalsRepository;
 import com.chatop.service.RentalsService;
 
