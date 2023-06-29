@@ -1,4 +1,4 @@
-package com.chatop.dtoModificate;
+package com.chatop.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

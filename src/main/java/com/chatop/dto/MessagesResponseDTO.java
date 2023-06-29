@@ -1,10 +1,10 @@
-package com.chatop.dtoModificate;
+package com.chatop.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
  @AllArgsConstructor
  @Data
-public class RentalsResponseDTO {
+public class MessagesResponseDTO {
 	    private String message;
 }

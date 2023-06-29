@@ -1,8 +1,6 @@
-package com.chatop.dtoModificate;
+package com.chatop.dto;
 
 import java.util.List;
-
-import com.chatop.model.RentalsDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
