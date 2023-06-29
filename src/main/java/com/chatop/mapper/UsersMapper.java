@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import com.chatop.dto.UsersDTO;
 import com.chatop.model.Users;
-import com.chatop.model.UsersDTO;
 
 @Mapper
 public interface UsersMapper {
