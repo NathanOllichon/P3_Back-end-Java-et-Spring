@@ -2,13 +2,11 @@ package com.chatop.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.chatop.dto.UsersJsonDTO;
 import com.chatop.model.Users;
 import com.chatop.repository.UsersRepository;
 import com.chatop.service.UsersService;
-import com.nimbusds.jose.util.Base64;
  
 @Service
 public class UsersServiceImpl implements UsersService {
