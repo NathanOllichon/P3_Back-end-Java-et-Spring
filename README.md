@@ -21,7 +21,7 @@ http://localhost:3001/api/documentation.html
 
 - First go in eclipse and import project at existing maven project.
 
-- Generate RSA keys in certs folder (public.pem, private.pem).
+- Generate RSA keys in src/main/resources/certs folder (public.pem, private.pem).
 
 - Go to MySQL command line, when your connecter use "source [Project_Folder]/Developpez-le-back-end-en-utilisant-Java-et-Spring/ressources/sql/script.sql;".
 
