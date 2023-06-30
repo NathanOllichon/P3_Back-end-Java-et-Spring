@@ -1,6 +1,6 @@
 package com.chatop.service;
 
-import com.chatop.dtoModificate.UsersJsonDTO;
+import com.chatop.dto.UsersJsonDTO;
 import com.chatop.model.Users;
 
 public interface UsersService {

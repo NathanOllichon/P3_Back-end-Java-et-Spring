@@ -47,7 +47,6 @@ public class TokenService {
 		  public Users validateJwtToken(String tokenEncoded) {			  
 			  String[] tokenSplited = tokenEncoded.split(" ");
 			  	Jwt jwt =  decoder.decode(tokenSplited[1]);
-			  System.out.println("tokenDecoded => " + jwt.getSubject());
 			  return usersRepository.findByEmail(jwt.getSubject());
 		  }
 		

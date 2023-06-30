@@ -1,4 +1,4 @@
-package com.chatop.model;
+package com.chatop.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

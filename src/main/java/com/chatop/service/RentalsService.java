@@ -2,9 +2,9 @@ package com.chatop.service;
 
 import java.util.List;
 
-import com.chatop.dtoModificate.RentalsListDTO;
+import com.chatop.dto.RentalsDTO;
+import com.chatop.dto.RentalsListDTO;
 import com.chatop.model.Rentals;
-import com.chatop.model.RentalsDTO;
 
 public interface RentalsService {
 

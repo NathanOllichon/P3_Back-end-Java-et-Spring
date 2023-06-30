@@ -2,9 +2,8 @@ package com.chatop.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.chatop.dtoModificate.UsersJsonDTO;
+import com.chatop.dto.UsersJsonDTO;
 import com.chatop.model.Users;
 import com.chatop.repository.UsersRepository;
 import com.chatop.service.UsersService;
@@ -22,16 +21,17 @@ public class UsersServiceImpl implements UsersService {
 	}
     
     @Override
-    @Transactional
 	public void registerUser(UsersJsonDTO usersJsonDTO) {
-    	Users usersCreated = new Users(null, usersJsonDTO.getEmail(), usersJsonDTO.getName(), usersJsonDTO.getPassword(), null, null);
+    	String encodedString = java.util.Base64.getEncoder().encodeToString(usersJsonDTO.getPassword().getBytes());
+    	Users usersCreated = new Users(null, usersJsonDTO.getEmail(), usersJsonDTO.getName(), encodedString, null, null);
     	usersRepository.save(usersCreated);
     }
     
     @Override
 	public Users isLoginValid(String mail, String password) {
     	Users user = usersRepository.findByEmail(mail);
-    	if(user.getPassword().equals(password)) {
+    	String encodedString = java.util.Base64.getEncoder().encodeToString(password.getBytes());
+    	if(user.getPassword().equals(encodedString)) {
     		return user;
     	}
     	return null;
