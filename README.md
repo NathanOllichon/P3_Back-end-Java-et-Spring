@@ -29,14 +29,14 @@ http://localhost:3001/api/documentation.html
 
 # Generate RSA keys Windows/cmder-console exemple
 
-#go in folder
+#go in folder : 
 cd [pathToProjet]/P3_Back-end-Java-et-Spring/src/main/resources/certs/
 
-#create rsa key pair
+#create rsa key pair : 
 openssl genrsa -out keypair.pem 2048
 
-#extract public key
+#extract public key : 
 openssl rsa -in keypair.pem -pubout -out public.pem
 
-#create private key in PKCS#8 format
+#create private key in PKCS#8 format : 
 openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in keypair.pem -out private.pem
